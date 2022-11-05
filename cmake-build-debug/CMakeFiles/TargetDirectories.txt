@@ -1,0 +1,3 @@
+F:/College/2nd year/OOP/Assignment 2 task 2/cmake-build-debug/CMakeFiles/Assignment_2_task_2.dir
+F:/College/2nd year/OOP/Assignment 2 task 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/College/2nd year/OOP/Assignment 2 task 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

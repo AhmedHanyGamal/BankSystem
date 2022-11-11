@@ -5,33 +5,54 @@ using namespace std;
 
 BankAccount::BankAccount() {
     balance = 0;
+    accountType = 'b';
 }
+
 BankAccount::BankAccount(double initialBalance) {
     balance = initialBalance;
+    accountType = 'b';
 }
-void BankAccount::accountIDSetter(const string& givenID){
+
+void BankAccount::setAccountID(const string& givenID){
     accountID = givenID;
 }
-string BankAccount::accountIDGetter(){
+
+string BankAccount::getAccountID(){
     return accountID;
 }
-void BankAccount::balanceSetter(double givenBalance){
+
+bool BankAccount::setBalance(double givenBalance){
     balance = givenBalance;
+    return true;
 }
-double BankAccount::balanceGetter(){
+
+void BankAccount::setClientInfo(Client&& client)
+{
+    this->clientInfo = std::make_unique<Client>(Client(std::move(client)));
+}
+
+double BankAccount::getBalance() 
+{
     return balance;
 }
-void BankAccount::withdraw(double withdrawalAmount) {
+
+char BankAccount::getAccountType() const
+{
+    return accountType;
+}
+
+bool BankAccount::withdraw(double withdrawalAmount) {
     if(balance - withdrawalAmount >= 0){
         balance -= withdrawalAmount;
-        cout << "transaction complete\ncurrent balance : " << balance << endl;
+        return true;
     }
-    else{
-        cout << "not enough money in your balance to withdraw\n";
+    else {
+        return false;
     }
 
 }
-void BankAccount::deposit(double depositAmount) {
+
+bool BankAccount::deposit(double depositAmount) {
     balance += depositAmount;
-    cout << "transaction complete\ncurrent balance : " << balance << endl;
+    return true;
 }

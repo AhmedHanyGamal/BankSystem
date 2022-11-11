@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "SavingsBankAccount.h"
 
 using namespace std;
@@ -6,38 +7,39 @@ using namespace std;
 SavingsBankAccount::SavingsBankAccount(double initialBalance) {
     if(initialBalance >= minimumBalance){
         balance = initialBalance;
-        cout << "transaction complete\nyour current balance is " << balance << endl;
+        accountType = 's';
     }
-    else{
-        cout << "initial balance not big enough, must be at least  1000\n";
+    else {
+        throw std::invalid_argument("initial balance not big enough, must be at least 1000\n");
     }
 }
 
-void SavingsBankAccount::balanceSetter(double givenBalance){
+bool SavingsBankAccount::setBalance(double givenBalance){
     if(givenBalance >= minimumBalance){
         balance = givenBalance;
-        cout << "transaction complete\nyour current balance is " << balance << endl;
+        return true;
     }
     else{
-        cout << "balance not big enough, must be at least  1000\n";
+        return false;
     }
 }
-void SavingsBankAccount::withdraw(double withdrawalAmount) {
+bool SavingsBankAccount::withdraw(double withdrawalAmount) {
     if(balance - withdrawalAmount >= minimumBalance){
         balance -= withdrawalAmount;
-        cout << "transaction complete\ncurrent balance : " << balance << endl;
+        return true;
     }
     else{
-        cout << "not enough money in your balance to withdraw\n(keep in mind that there is a minimum balance of 1000 dollars)\n";
+        return false;
     }
 }
 
-void SavingsBankAccount::deposit(double depositAmount) {
+bool SavingsBankAccount::deposit(double depositAmount) {
     if(depositAmount >= 100){
         balance += depositAmount;
-        cout << "transaction complete\ncurrent balance : " << balance << endl;
+        return true;
+    //    cout << "transaction complete\ncurrent balance : " << balance << endl;
     }
     else{
-        cout << "not enough money to deposit\n(you can only deposit 100 dollars or more, since you opened a savings account)\n";
+        return false;
     }
 }

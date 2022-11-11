@@ -63,9 +63,17 @@ bool BankApplication::createAccount()
 	std::unique_ptr<Client> newClient(new Client(name, address, phoneNumber));
 	clients.push_back(std::move(newClient));
 	
-	int startingBalance;
+	double startingBalance;
 	std::cout << "\nPlease Enter the Starting Balance =========> ";
 	std::cin >> startingBalance;
+	while (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(100,'\n');
+			
+			std::cout << "plz enter a valid starting amount of balance : ";
+			std::cin >> startingBalance;
+		}
 
 	idGenerator.setLabel("FCAI-");
 	idGenerator.setLabelNumber(clients.size() - 1); // gets last id number
@@ -117,7 +125,7 @@ bool BankApplication::createAccount()
 
 void BankApplication::listClientsAccounts()
 {
-	system("cls");
+	//system("cls");
 	std::cout << "------------------------------------" << std::endl;
 	for (int i = 0; i < clients.size(); i++)
 	{
@@ -134,15 +142,19 @@ bool BankApplication::login(std::string& accountID)
 {
 	while (!clientAccountIndex.count(accountID))
 	{
+		int choice;
 		std::cout << "Please Enter A Correct ID, This ID Does Not Exist.\n";
 		std::cout << "1 - Try Again.\n2 - Return To Main Menu\n";
 		std::cout << "Type 1 or 2\nPlease enter your choice =========> ";
-
-		int choice;
+		std::cin.clear();
+		std::cin.ignore(100,'\n');
 		std::cin >> choice;
-		while (choice != 1 && choice != 2)
+		while (std::cin.fail() || (choice != 1 && choice != 2))
 		{
-			std::cout << "\nPlease Enter a valid Choice =========>  ";
+			std::cin.clear();
+			std::cin.ignore(100,'\n');
+			
+			std::cout << "plz enter a valid number or choice =========> ";
 			std::cin >> choice;
 		}
 
@@ -177,7 +189,14 @@ void BankApplication::withdrawMoney()
 	double amount;
 	std::cout << "Please Enter The Amount to Withdraw =========> ";
 	std::cin >> amount;
-
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(100,'\n');
+		
+		std::cout << "plz enter a valid amount : ";
+		std::cin >> amount;
+	}
 	while (!accounts[index]->withdraw(amount))
 	{
 		if (accounts[index]->getAccountType() == 'b')
@@ -195,9 +214,12 @@ void BankApplication::withdrawMoney()
 
 		int choice;
 		std::cin >> choice;
-		while (choice != 1 && choice != 2)
+		while (std::cin.fail() || (choice != 1 && choice != 2))
 		{
-			std::cout << "\nPlease Enter a valid Choice =========>  ";
+			std::cin.clear();
+			std::cin.ignore(100,'\n');
+			
+			std::cout << "plz enter a valid number or choice =========> ";
 			std::cin >> choice;
 		}
 
@@ -230,6 +252,14 @@ void BankApplication::depositMoney()
 	double amount;
 	std::cout << "Please Enter The Amount to Deposit =========> ";
 	std::cin >> amount;
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(100,'\n');
+		
+		std::cout << "plz enter a valid amount : ";
+		std::cin >> amount;
+	}
 
 	while (!accounts[index]->deposit(amount))
 	{
@@ -248,9 +278,12 @@ void BankApplication::depositMoney()
 
 		int choice;
 		std::cin >> choice;
-		while (choice != 1 && choice != 2)
+		while (std::cin.fail() || (choice != 1 && choice != 2))
 		{
-			std::cout << "\nPlease Enter a valid Choice =========>  ";
+			std::cin.clear();
+			std::cin.ignore(100,'\n');
+			
+			std::cout << "plz enter a valid number or choice =========> ";
 			std::cin >> choice;
 		}
 

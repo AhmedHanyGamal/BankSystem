@@ -3,7 +3,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
 	BankApplication app;
 
 	while (true)
@@ -14,6 +15,14 @@ int main() {
 
 		int choice;
 		cin >> choice;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100,'\n');
+			
+			cout << "plz enter a valid number: ";
+			cin >> choice;
+		}
 		if (choice == 1)
 		{
 			if (!app.createAccount())
@@ -48,5 +57,4 @@ int main() {
 	return 0;
 }
 
-
-//do the ID stuff
+// do the ID stuff

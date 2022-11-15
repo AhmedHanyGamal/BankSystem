@@ -13,7 +13,9 @@ protected:
     std::string accountID;
     double balance;
     char accountType; // 'b' if basic account, 's' if saving account
-    std::unique_ptr<Client> clientInfo;
+
+public:
+    Client* clientInfo;
 
 public:
     BankAccount();
@@ -25,9 +27,9 @@ public:
 
     virtual bool setBalance(double);
     void setAccountID(const std::string&);
-    void setClientInfo(Client&& client);
 
     virtual bool withdraw(double); // returns true if transaction is accepted
     virtual bool deposit(double); // returns true if transaction is accepted
 
+    virtual void displayType() const;
 };

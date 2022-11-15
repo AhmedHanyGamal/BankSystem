@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include <iostream>
 #include "BankAccount.h"
 
@@ -26,11 +28,6 @@ bool BankAccount::setBalance(double givenBalance){
     return true;
 }
 
-void BankAccount::setClientInfo(Client&& client)
-{
-    this->clientInfo = std::make_unique<Client>(Client(std::move(client)));
-}
-
 double BankAccount::getBalance() 
 {
     return balance;
@@ -55,4 +52,9 @@ bool BankAccount::withdraw(double withdrawalAmount) {
 bool BankAccount::deposit(double depositAmount) {
     balance += depositAmount;
     return true;
+}
+
+void BankAccount::displayType() const
+{
+    std::cout << "Account Type: Basic Bank Account" << std::endl;
 }

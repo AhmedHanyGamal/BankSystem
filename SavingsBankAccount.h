@@ -14,6 +14,7 @@ public:
     bool withdraw(double); // returns true if transaction is accepted
     bool deposit(double); // returns true if transaction is accepted
 
+    void displayType() const;
 };
 
 

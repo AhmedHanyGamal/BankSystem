@@ -1,5 +1,6 @@
-#ifndef client_h
-#define client_h
+#ifndef CLIENT_H
+#define CLIENT_H
+
 #include <string>
 #include <memory>
 
@@ -12,8 +13,10 @@ private:
 	std::string fullName;
 	std::string fullAddress;
 	std::string phoneNumber;
-	std::unique_ptr<BankAccount> clientAccount;
 	
+public:
+	BankAccount* clientAccount;
+
 public:
 	Client(std::string fullName, std::string fullAddress, std::string phone);
 
@@ -24,10 +27,11 @@ public:
 	void setName(std::string fullName);
 	void setAddress(std::string fullAddress);
 	void setPhoneNumber(std::string phone);
-	void setClientAccount(BankAccount&& account);
-	
 
+	void deletePtr();
 };
+
+
 
 
 

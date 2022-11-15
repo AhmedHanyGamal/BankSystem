@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include <iostream>
 #include <stdexcept>
 #include "SavingsBankAccount.h"
@@ -23,6 +25,7 @@ bool SavingsBankAccount::setBalance(double givenBalance){
         return false;
     }
 }
+
 bool SavingsBankAccount::withdraw(double withdrawalAmount) {
     if(balance - withdrawalAmount >= minimumBalance){
         balance -= withdrawalAmount;
@@ -37,9 +40,14 @@ bool SavingsBankAccount::deposit(double depositAmount) {
     if(depositAmount >= 100){
         balance += depositAmount;
         return true;
-    //    cout << "transaction complete\ncurrent balance : " << balance << endl;
     }
     else{
         return false;
     }
+}
+
+
+void SavingsBankAccount::displayType() const
+{
+    std::cout << "Account Type: Saving Bank Account" << std::endl;
 }

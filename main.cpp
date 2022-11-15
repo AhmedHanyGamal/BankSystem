@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
 #include <iostream>
 #include "BankApplication.h"
 
@@ -6,8 +9,9 @@ using namespace std;
 int main()
 {
 	BankApplication app;
+	bool appIsRunning = true;
 
-	while (true)
+	while (appIsRunning)
 	{
 		system("cls");
 		app.displayMainMenu();
@@ -23,6 +27,7 @@ int main()
 			cout << "plz enter a valid number: ";
 			cin >> choice;
 		}
+
 		if (choice == 1)
 		{
 			if (!app.createAccount())
@@ -50,11 +55,8 @@ int main()
 		}
 		if (choice == 5)
 		{
-			break;
+			appIsRunning = false;
+			cout << "Thanks For using our program" << endl;
 		}
 	}
-
-	return 0;
 }
-
-// do the ID stuff

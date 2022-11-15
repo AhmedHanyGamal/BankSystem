@@ -1,13 +1,14 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include <iostream>
 #include <string>
 #include "Client.h"
 
-Client::Client(std::string fullName, std::string fullAddress, std::string phone)
-{
-	this->fullName = fullName;
-	this->fullAddress = fullAddress;
-	this->phoneNumber = phone;
-}
+Client::Client(std::string fullName, std::string fullAddress, std::string phone) :
+	fullName(std::move(fullName)),
+	fullAddress(std::move(fullAddress)),
+	phoneNumber(std::move(phone))
+{}
 
 std::string Client::getName() const
 {
@@ -26,20 +27,15 @@ std::string Client::getPhoneNumber() const
 
 void Client::setName(std::string fullName)
 {
-	this->fullName = fullName;
+	this->fullName = std::move(fullName);
 }
 
 void Client::setAddress(std::string fullAddress)
 {
-	this->fullAddress = fullAddress;
+	this->fullAddress = std::move(fullAddress);
 }
 
 void Client::setPhoneNumber(std::string phone)
 {
-	this->phoneNumber = phone;
-}
-
-void Client::setClientAccount(BankAccount&& account)
-{
-	this->clientAccount = std::make_unique<BankAccount>(BankAccount(std::move(account)));
+	this->phoneNumber = std::move(phone);
 }

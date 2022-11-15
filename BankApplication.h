@@ -1,5 +1,5 @@
-#ifndef BankApplication_h
-#define BankApplication_h
+#ifndef BANK_APPLICATION_H
+#define BANK_APPLICATION_H
 
 #include <iostream>
 #include <string>
@@ -21,10 +21,11 @@ private:
 private:
 	bool isValidName(const std::string& name);
 	bool isValidPhoneNumber(const std::string& phoneNumber);
-	bool login(std::string& accountID);
+	bool askAccountID(std::string& accountID);
 
 public:
-	BankApplication() {}
+	BankApplication() = default; // modified by PVS
+
 	void displayMainMenu();
 	bool createAccount();
 	void listClientsAccounts();
